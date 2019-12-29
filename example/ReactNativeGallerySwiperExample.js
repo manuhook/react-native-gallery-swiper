@@ -3,11 +3,11 @@ import {
     Platform,
     Dimensions,
     StyleSheet,
+    Linking,
     View,
     Text,
     TouchableWithoutFeedback,
-    Image,
-    Linking
+    Image
 } from "react-native";
 import PropTypes from "prop-types";
 import GallerySwiper from "react-native-gallery-swiper";
@@ -20,6 +20,117 @@ const deviceWidth = Dimensions.get("window").width;
 const platform = Platform.OS;
 
 const backIcon = require("./assets/arrow_back_ios_white_36dp.png");
+
+export default class ReactNativeGallerySwiperExample extends React.PureComponent {
+    state = {
+        galleryIndex: 0
+    }
+
+    componentDidMount() {
+        // dynamic initialPage
+        // setTimeout(() => {
+        //     this.setState({ galleryIndex: 1 });
+        // }, 2000);
+    }
+
+    render() {
+        // console.log("Data length total: ", testData.length);
+        return (
+            <View
+                style={styles.container}
+            >
+                <Header
+                    renderPageHeader={(image, i) => {
+                        return (
+                            <View style={[styles.statusBarTop, styles.rowMiddleAlign]}>
+                                <TouchableWithoutFeedback onPress={
+                                    () => Linking.openURL("https://luehangs.site")
+                                }>
+                                    <Image source={backIcon}
+                                        style={{marginLeft: 10, height: 30, width: 30}}
+                                    />
+                                </TouchableWithoutFeedback>
+                                <TouchableWithoutFeedback onPress={
+                                    () => Linking.openURL("https://luehangs.site")
+                                }>
+                                    <Image source={{
+                                            uri: "https://luehangs.site/images/lue-hang2018-square.jpg"
+                                        }}
+                                        style={styles.userPic}
+                                    />
+                                </TouchableWithoutFeedback>
+                                <View>
+                                    <Text style={[
+                                        styles.profilePrimary,
+                                        styles.whiteText]}
+                                    >
+                                        {image.title}
+                                    </Text>
+                                    <Text style={[
+                                        styles.profileSecondary,
+                                        styles.whiteText
+                                    ]}>
+                                        {image.description} - index: {i}
+                                    </Text>
+                                </View>
+                            </View>
+                        );
+                    }}
+                    images={testData}
+                    galleryIndex={this.state.galleryIndex}
+                />
+                <GallerySwiper
+                    // sensitiveScroll={true}
+                    initialPage={this.state.galleryIndex}
+                    images={testData}
+                    onPageSelected={
+                        (index) => this.setState({ galleryIndex: index })
+                    }
+                    // imageComponent={(imageProps, d, i) => {
+                    //     // console.log(imageProps);
+                    //     return (
+                    //         <Image
+                    //             {...imageProps}
+                    //             // resizeMode="cover"
+                    //         />
+                    //     );
+                    // }}
+                    loadMinimal={true}
+                    loadMinimalSize={2}
+                    // onSingleTapConfirmed={() => console.log("1")}
+                    // onDoubleTapConfirmed={() => console.log("2")}
+                    // onLongPress={(i, j) => console.log(i, j)}
+                />
+                <Footer
+                    renderPageFooter={(image, i) => {
+                        return (
+                            <View style={[styles.footerBottom, styles.colMiddleAlign]}>
+                                <TouchableWithoutFeedback
+                                    onPress={() => {
+                                        Linking.openURL("https://www.luehangs.site");
+                                    }}
+                                >
+                                    <Text style={[styles.footerPrimary, { fontWeight: "bold", color: "#BABABA" }]}>
+                                        LH Blog
+                                    </Text>
+                                </TouchableWithoutFeedback>
+                                <Text style={[
+                                    styles.footerSecondary,
+                                    { fontWeight: "bold", color: "#DFDFDF" }
+                                    ]}>
+                                    Learn JavaScript and React Native with project examples
+                                    along with Cyber Security and Ethical Hacking.
+                                </Text>
+                            </View>
+                        );
+                    }}
+                    images={testData}
+                    galleryIndex={this.state.galleryIndex}
+                />
+            </View>
+        );
+    }
+}
 
 class Footer extends React.PureComponent {
     static propTypes = {
@@ -61,131 +172,6 @@ class Header extends React.PureComponent {
     }
 }
 
-export default class ReactNativeGallerySwiperExample extends React.PureComponent {
-    state = {
-        galleryIndex: 0
-    }
-
-    componentDidMount() {
-        // dynamic initialPage
-        setTimeout(() => {
-            this.setState({ galleryIndex: 1 });
-        }, 2000);
-    }
-
-    render() {
-        console.log("Data length total: ", testData.length);
-        return (
-            <View
-                style={styles.container}
-            >
-                {/* <Header
-                    renderPageHeader={(image, i) => {
-                        return (
-                            <View style={[styles.statusBarTop, styles.rowMiddleAlign]}>
-                                <TouchableWithoutFeedback onPress={
-                                    // eslint-disable-next-line no-console
-                                    () => console.log("close")}>
-                                    <Image source={backIcon} style={{marginLeft: 10, height: 30, width: 30}} />
-                                </TouchableWithoutFeedback>
-                                <Image
-                                    source={{
-                                        uri: "https://luehangs.site/images/lue-hang2018-square.jpg"
-                                    }}
-                                    style={styles.userPic} />
-                                <View>
-                                    <Text style={[
-                                        styles.profilePrimary,
-                                        styles.whiteText]}
-                                    >
-                                        {image.title}
-                                    </Text>
-                                    <Text style={[
-                                        styles.profileSecondary,
-                                        styles.whiteText
-                                    ]}>
-                                        {image.description} - index: {i}
-                                    </Text>
-                                </View>
-                            </View>
-                        );
-                    }}
-                    images={testData}
-                    galleryIndex={this.state.galleryIndex}
-                /> */}
-                <GallerySwiper
-                    // sensitiveScroll={true}
-                    initialPage={this.state.galleryIndex}
-                    images={testData}
-                    // onPageSelected={
-                    //     (index) => this.setState({ galleryIndex: index })
-                    // }
-                    // imageComponent={(imageProps, d, i) => {
-                    //     // console.log(imageProps);
-                    //     return (
-                    //         <Image
-                    //             {...imageProps}
-                    //             // resizeMode="cover"
-                    //         />
-                    //     );
-                    // }}
-                    loadMinimal={true}
-                    loadMinimalSize={2}
-                    // onSingleTapConfirmed={() => console.log("1")}
-                    // onDoubleTapConfirmed={() => console.log("2")}
-                    // onLongPress={(i, j) => console.log(i, j)}
-                />
-                {/* <GallerySwiper
-                    // style={{ flex: 1, backgroundColor: "#000" }}
-                    // sensitiveScroll={true}
-                    images={testData}
-                    onPageSelected={
-                        (index) => this.setState({ galleryIndex: index })
-                    }
-                    imageComponent={(imageProps, d, i) => {
-                        // console.log(imageProps);
-                        return (
-                            <Image
-                                {...imageProps}
-                                // resizeMode="cover"
-                            />
-                        );
-                    }}
-                    // onSingleTapConfirmed={() => console.log("1")}
-                    // onDoubleTapConfirmed={() => console.log("2")}
-                    // onLongPress={(i, j) => console.log(i, j)}
-                /> */}
-                {/* <Footer
-                    renderPageFooter={(image, i) => {
-                        return (
-                            <View style={[styles.footerBottom, styles.colMiddleAlign]}>
-                                <TouchableWithoutFeedback
-                                    onPress={() => {
-                                        Linking.openURL("https://www.luehangs.site");
-                                    }}
-                                >
-                                    <Text style={[styles.footerPrimary, { fontWeight: "bold", color: "#BABABA" }]}>
-                                        LH Blog
-                                    </Text>
-                                </TouchableWithoutFeedback>
-                                <Text style={[
-                                    styles.footerSecondary,
-                                    { fontWeight: "bold", color: "#DFDFDF" }
-                                    ]}>
-                                    Learn JavaScript and React Native with project examples
-                                    along with Cyber Security and Ethical Hacking.
-                                </Text>
-                            </View>
-                        );
-                    }}
-                    images={testData}
-                    galleryIndex={this.state.galleryIndex}
-                /> */}
-            </View>
-        );
-    }
-}
-
 function isIPhoneX() {
     const X_WIDTH = 375;
     const X_HEIGHT = 812;
@@ -208,16 +194,16 @@ const styles = StyleSheet.create({
             ? 20 + 2.5
             : 2.5
     },
-    header: {
-        height: isIPhoneX() ? 88 : 64,
-        backgroundColor: "transparent"
-    },
-    mobileHeader: {
-        width: deviceWidth,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center"
-    },
+    // header: {
+    //     height: isIPhoneX() ? 88 : 64,
+    //     backgroundColor: "transparent"
+    // },
+    // mobileHeader: {
+    //     width: deviceWidth,
+    //     flexDirection: "row",
+    //     alignItems: "center",
+    //     justifyContent: "center"
+    // },
     rowMiddleAlign: {
         flexDirection: "row",
         alignItems: "center"
