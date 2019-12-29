@@ -88,9 +88,8 @@ export default class GallerySwiper extends PureComponent {
         this.getImageTransformer = this.getImageTransformer.bind(this);
         this.getViewPagerInstance = this.getViewPagerInstance.bind(this);
         this.activeImageResponder = this.activeImageResponder.bind(this);
-    }
 
-    componentWillMount () {
+
         let onResponderReleaseOrTerminate = (evt, gestureState) => {
             if (this.activeResponder) {
                 if (this.activeResponder === this.viewPagerResponder &&
