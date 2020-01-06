@@ -126,6 +126,10 @@ render() {
                 { url: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
                 { URL: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
             ]}
+            // Version *1.15.0 update
+            // onEndReached={() => {
+            //     // add more images when scroll reaches end
+            // }}
         />
     );
 }
@@ -168,11 +172,14 @@ render() {
                     dimensions: { width: 1080, height: 1920 } },
                 { uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg",
                     dimensions: { width: 1920, height: 1080 } },
-                // Test with 10 to over 100s to 1000s of images
                 // ...
                 // ...
                 // ...
             ]}
+            // Version *1.15.0 update
+            // onEndReached={() => {
+            //     // add more images when scroll reaches end
+            // }}
             // Change this to render how many items before it.
             initialNumToRender={2}
             // Turning this off will make it feel faster
