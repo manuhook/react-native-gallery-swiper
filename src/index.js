@@ -35,6 +35,8 @@ export default class GallerySwiper extends PureComponent {
         onLongPress: PropTypes.func,
         onViewTransformed: PropTypes.func,
         onTransformGestureReleased: PropTypes.func,
+        onSwipeUpReleased: PropTypes.func,
+        onSwipeDownReleased: PropTypes.func,
         onEndReached: PropTypes.func,
         onEndReachedThreshold: PropTypes.number,
         enableScale: PropTypes.bool,
@@ -294,9 +296,10 @@ export default class GallerySwiper extends PureComponent {
     renderPage (pageData, pageId) {
         const {
             onViewTransformed, onPinchTransforming, onPinchStartReached, onPinchEndReached,
-            onTransformGestureReleased, onDoubleTapStartReached, onDoubleTapEndReached, resizeMode,
-            enableResistance, enableScale, maxScale, enableTranslate, resistantStrHorizontal,
-            resistantStrVertical, maxOverScrollDistance, errorComponent, imageComponent
+            onTransformGestureReleased, onSwipeUpReleased, onSwipeDownReleased, onDoubleTapStartReached,
+            onDoubleTapEndReached, resizeMode, enableResistance, enableScale, maxScale, enableTranslate,
+            resistantStrHorizontal, resistantStrVertical, maxOverScrollDistance, errorComponent,
+            imageComponent
         } = this.props;
         return (
             <ImageTransformer
@@ -321,6 +324,14 @@ export default class GallerySwiper extends PureComponent {
                     // return value is checked in ViewTransformer
                     return onTransformGestureReleased &&
                         onTransformGestureReleased(transform, pageId);
+                }}
+                onSwipeUpReleased={(transform) => {
+                    onSwipeUpReleased &&
+                        onSwipeUpReleased(transform, pageId);
+                }}
+                onSwipeDownReleased={(transform) => {
+                    onSwipeDownReleased &&
+                        onSwipeDownReleased(transform, pageId);
                 }}
                 onDoubleTapStartReached={(transform) => {
                     onDoubleTapStartReached &&
