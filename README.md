@@ -9,6 +9,7 @@ An easy and simple to use React Native component to render a high performant and
 Learn more about the installation and how to use this package in the updated [documentation](https://luehangs.site/lue_hang/projects/react-native-gallery-swiper) page.
 
 - Supports smart rendering for **large lists** or small.
+- Scroll loading and supporting `onEndReached`.
 - Includes guestures and important event listeners for pan, pinch, single tap and double tap.
 - Includes zoom mode.
 - Easily customizable.
@@ -32,7 +33,7 @@ Learn more about the installation and how to use this package in the updated [do
     <img src="https://www.luehangs.site/videos/react-native-gallery-swiper-demo.gif" alt="react-native-gallery-swiper" />
 </h1>
 
-#### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
+#### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LueHsoft](https://www.luehangs.site).
 
 <br/>
 <br/>
@@ -232,6 +233,8 @@ Props | Description | Type | Default
 `onPinchStartReached` | Executed after scaling out or zooming out to initial size using the pinch gesture. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.18.0 update**. | `Function`
 `onPinchEndReached` | Executed after scaling in or zooming in to `maxScale` using the pinch gesture. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.18.0 update**. | `Function`
 `onTransformGestureReleased` | Executed after a transform guesture released (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.16.0 update**. | `Function`
+`onSwipeUpReleased` | Executed after releasing an upward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*1.25.0 update**. | `Function`
+`onSwipeDownReleased` | Executed after releasing a downward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*1.25.0 update**. | `Function`
 `onDoubleTapStartReached` | Executed after scaling out or zooming out using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.17.0 update**. | `Function`
 `onDoubleTapEndReached` | Executed after scaling in or zooming in using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.17.0 update**. | `Function`
 `onEndReached` | Called once when the page index gets within the `onEndReachedThreshold` of the `images` content. `() => void` **Version \*1.15.0 update**. | `Function`
