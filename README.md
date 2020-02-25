@@ -221,7 +221,7 @@ Props | Description | Type | Default
 `flatListProps` | Props to be passed to the underlying `FlatList`. | `object` | `{windowSize: 3}`
 `pageMargin` | Blank margin space to show between images. | `number` | `0`
 `sensitiveScroll` | Detect rough and fast swiping gestures in order to "cushion" or slow down a swipe at the end. **Version \*1.4.0 update**. | `boolean` | `true`
-`onPageSelected` | Fired with the index of page that has been selected. `(index: number) => void` | `Function`
+`onPageSelected` | Executed with the index of page that has been selected. `(index: number) => void` | `Function`
 `onPageScrollStateChanged` | Called when page scrolling state has changed, see [scroll state and events](#scroll-state-and-events). `(state: string) => void` | `Function`
 `onPageScroll` | Scroll event, see [scroll state and events](#scroll-state-and-events). `(event: { position: number, offset: number, fraction: number }) => void` | `Function`
 `scrollViewStyle` | Custom style for the `FlatList` component. | `object` | `{}`
@@ -231,16 +231,16 @@ Props | Description | Type | Default
 `onViewTransformed` | Executed while being transformed in anyway (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.16.0 update**. | `Function`
 `onPinchTransforming` | Executed while pinching to transform view or zoom (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.17.0 update**. | `Function`
 `onPinchStartReached` | Executed after scaling out or zooming out to initial size using the pinch gesture. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.18.0 update**. | `Function`
-`onPinchEndReached` | Executed after scaling in or zooming in to `maxScale` using the pinch gesture. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.18.0 update**. | `Function`
+`onPinchEndReached` | Executed after scaling in or zooming in to `maxScale` threshold using the pinch gesture. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.18.0 update**. | `Function`
 `onTransformGestureReleased` | Executed after a transform guesture released (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.16.0 update**. | `Function`
-`onSwipeUpReleased` | Executed after releasing an upward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*1.25.0 update**. | `Function`
-`onSwipeDownReleased` | Executed after releasing a downward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*1.25.0 update**. | `Function`
+`onSwipeUpReleased` | Executed after releasing an upward swipe at a specific y translate threshold while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*1.25.0 update**. | `Function`
+`onSwipeDownReleased` | Executed after releasing a downward swipe at a specific y translate threshold while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*1.25.0 update**. | `Function`
 `onDoubleTapStartReached` | Executed after scaling out or zooming out using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.17.0 update**. | `Function`
 `onDoubleTapEndReached` | Executed after scaling in or zooming in using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*1.17.0 update**. | `Function`
 `onEndReached` | Called once when the page index gets within the `onEndReachedThreshold` of the `images` content. `() => void` **Version \*1.15.0 update**. | `Function`
 `onEndReachedThreshold` | How far from the end (in units of visible length of the list) of the list of images must be from the end of the content to trigger the `onEndReached` callback. Thus a value of 0.5 will trigger `onEndReached` when the end of the content is within half the visible length of the images. **Version \*1.15.0 update**. | `number` | `0.5`
 `enableScale` | Enable or disable zoom and double tap zoom (view transformer). **Version \*1.9.0 update**. | `boolean` | `true`
-`maxScale` | Max zoom (view transformer). **Version \*1.17.0 update**. | `number` | `Math.max(imageWidth / viewWidth, imageHeight / viewHeight)`
+`maxScale` | Max zoom (view transformer). Number greater than 1 will create a zoom. Default will only zoom for large images as tiny images will be pixelated if scaling occurs. **Version \*1.17.0 update**. | `number` | `Math.max(imageWidth / viewWidth, imageHeight / viewHeight)`
 `enableTranslate` | Enable or disable moving while in zoom (view transformer). **Version \*1.11.0 update**. | `boolean` | `true`
 `enableResistance` | Enable or disable resistance over panning (view transformer). **Version \*1.14.0 update**. | `boolean` | `true`
 `resistantStrHorizontal` | Resistant value for left and right panning (view transformer). `(dx: number) => number` **Version \*1.14.0 update**. | `Function`, `number` or `string` | `(dx) => (dx /= 3)`
