@@ -45,6 +45,7 @@
     "src": "./src"
   },
   "main": "./src/index.js",
+  "types": "./src/index.d.ts",
   "files": [
     "/__tests__",
     "/src",
