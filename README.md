@@ -378,6 +378,15 @@ Free and made possible along with costly maintenance and updates by [Lue Hang](h
 
 Contributors will be posted here.
 
+<p align="left-align">
+    <a href="https://github.com/alessiocancian">
+        <img width="100" hspace="5" src="https://avatars1.githubusercontent.com/u/18497523?s=460&u=d5c4a1843e9c31279cc6715b744704499b4b3afd&v=4"/>
+    </a>
+    <a href="https://github.com/felipeneri">
+        <img width="100" hspace="5" src="https://avatars0.githubusercontent.com/u/15368659?s=460&u=0156d2d5966a9387c850b8e7d3cc2ad8d2366fa9&v=4"/>
+    </a>
+</p>
+
 <br/>
 
 ### :baby: Beginners
