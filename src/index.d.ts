@@ -1,4 +1,4 @@
-declare module 'react-native-gallery-swiper' {
+declare module '@ericedouard/react-native-gallery-swiper' {
   import { Component } from "react";
   import { FlatListProps, ImageProps, ImageURISource, ViewStyle, ImageResizeMode } from "react-native";
   import PageList from 'react-native-page-list';
