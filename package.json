@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Luehang/react-native-gallery-swiper"
+    "url": "https://github.com/ericedouard/react-native-gallery-swiper.git"
   },
   "bugs": {
     "url": "https://github.com/Luehang/react-native-gallery-swiper/issues"
