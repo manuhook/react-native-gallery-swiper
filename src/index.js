@@ -1,9 +1,9 @@
+import PageList from "@ericedouard/react-native-page-list";
 import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 import { Dimensions, View, ViewPropTypes } from "react-native";
 import { createResponder } from "react-native-easy-guesture-responder";
 import ImageTransformer from "react-native-image-transformer";
-import PageList from "react-native-page-list";
 
 const DEFAULT_FLAT_LIST_PROPS = {
     windowSize: 3
@@ -23,6 +23,7 @@ export default class GallerySwiper extends PureComponent {
             : View.propTypes.style,
         pageMargin: PropTypes.number,
         sensitiveScroll: PropTypes.bool,
+        backgroundColor: PropTypes.string,
         renderOverlay: PropTypes.func,
         onPageSelected: PropTypes.func,
         onPageScrollStateChanged: PropTypes.func,
@@ -440,6 +441,7 @@ export default class GallerySwiper extends PureComponent {
                 onPageScroll={this.props.onPageScroll}
                 removeClippedSubviews={this.props.removeClippedSubviews}
                 initialNumToRender={this.props.initialNumToRender}
+                backgroundColor={this.props.backgroundColor}
             />
         );
     }
