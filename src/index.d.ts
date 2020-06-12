@@ -41,6 +41,7 @@ declare module 'react-native-gallery-swiper' {
     scrollViewStyle?: ViewStyle,
     pageMargin?: number,
     sensitiveScroll?: boolean,
+    renderOverlay: () => void,
     onPageSelected?: (page: number) => void,
     onPageScrollStateChanged?: (state: PageState) => void,
     onPageScroll?: (event: { position: number, offset: number, fraction: number }) => void,

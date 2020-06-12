@@ -1,6 +1,6 @@
-import React, { PureComponent } from "react";
-import { View, ViewPropTypes } from "react-native";
 import PropTypes from "prop-types";
+import React, { PureComponent } from "react";
+import { Dimensions, View, ViewPropTypes } from "react-native";
 import { createResponder } from "react-native-easy-guesture-responder";
 import ImageTransformer from "react-native-image-transformer";
 import PageList from "react-native-page-list";
@@ -8,6 +8,8 @@ import PageList from "react-native-page-list";
 const DEFAULT_FLAT_LIST_PROPS = {
     windowSize: 3
 };
+
+const height = Dimensions.get("screen").height;
 
 export default class GallerySwiper extends PureComponent {
     static propTypes = {
@@ -21,6 +23,7 @@ export default class GallerySwiper extends PureComponent {
             : View.propTypes.style,
         pageMargin: PropTypes.number,
         sensitiveScroll: PropTypes.bool,
+        renderOverlay: PropTypes.func,
         onPageSelected: PropTypes.func,
         onPageScrollStateChanged: PropTypes.func,
         onPageScroll: PropTypes.func,
@@ -80,7 +83,7 @@ export default class GallerySwiper extends PureComponent {
     pageCount = 0;
     gestureResponder = undefined;
 
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.renderPage = this.renderPage.bind(this);
@@ -194,11 +197,15 @@ export default class GallerySwiper extends PureComponent {
             },
             onMove: (evt, gestureState) => {
                 const currentImageTransformer = this.getCurrentImageTransformer();
+                this._galleryViewPager &&
+                    this._galleryViewPager.setFade(1 - ((Math.abs(currentImageTransformer.state.translateY) / height) * 1));
                 currentImageTransformer &&
                     currentImageTransformer.onResponderMove(evt, gestureState);
                 clearTimeout(this._longPressTimeout);
             },
             onEnd: (evt, gestureState) => {
+                this._galleryViewPager &&
+                    this._galleryViewPager.resetFade();
                 const currentImageTransformer = this.getCurrentImageTransformer();
                 currentImageTransformer &&
                     currentImageTransformer.onResponderRelease(evt, gestureState);
@@ -207,15 +214,15 @@ export default class GallerySwiper extends PureComponent {
         };
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this._isMounted = true;
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         this._isMounted = false;
     }
 
-    shouldScrollViewPager (evt, gestureState) {
+    shouldScrollViewPager(evt, gestureState) {
         if (gestureState.numberActiveTouches > 1) {
             return false;
         }
@@ -236,7 +243,7 @@ export default class GallerySwiper extends PureComponent {
         return false;
     }
 
-    activeImageResponder (evt, gestureState) {
+    activeImageResponder(evt, gestureState) {
         if (this.activeResponder !== this.imageResponder) {
             if (this.activeResponder === this.viewPagerResponder) {
                 // pass true to disable ViewPager settle
@@ -247,7 +254,7 @@ export default class GallerySwiper extends PureComponent {
         }
     }
 
-    activeViewPagerResponder (evt, gestureState) {
+    activeViewPagerResponder(evt, gestureState) {
         if (this.activeResponder !== this.viewPagerResponder) {
             if (this.activeResponder === this.imageResponder) {
                 this.imageResponder.onEnd(evt, gestureState);
@@ -257,7 +264,7 @@ export default class GallerySwiper extends PureComponent {
         }
     }
 
-    getImageTransformer (page) {
+    getImageTransformer(page) {
         if (page >= 0 && page < this.pageCount) {
             let ref = this.imageRefs.get(page);
             if (ref) {
@@ -266,15 +273,15 @@ export default class GallerySwiper extends PureComponent {
         }
     }
 
-    getCurrentImageTransformer () {
+    getCurrentImageTransformer() {
         return this.getImageTransformer(this.currentPage);
     }
 
-    getViewPagerInstance () {
+    getViewPagerInstance() {
         return this._galleryViewPager;
     }
 
-    onPageSelected (page) {
+    onPageSelected(page) {
         this.currentPage = page;
         this.props.onPageSelected && this.props.onPageSelected(page);
 
@@ -286,7 +293,7 @@ export default class GallerySwiper extends PureComponent {
         }
     }
 
-    onPageScrollStateChanged (state) {
+    onPageScrollStateChanged(state) {
         if (state === "idle") {
             this.resetHistoryImageTransform();
         }
@@ -294,7 +301,7 @@ export default class GallerySwiper extends PureComponent {
             this.props.onPageScrollStateChanged(state);
     }
 
-    renderPage (pageData, pageId) {
+    renderPage(pageData, pageId) {
         const {
             onViewTransformed, onPinchTransforming, onPinchStartReached, onPinchEndReached,
             onTransformGestureReleased, onSwipeUpReleased, onSwipeDownReleased, onDoubleTapStartReached,
@@ -360,7 +367,7 @@ export default class GallerySwiper extends PureComponent {
         );
     }
 
-    resetHistoryImageTransform () {
+    resetHistoryImageTransform() {
         let transformer = this.getImageTransformer(
             this.currentPage + 1
         );
@@ -384,17 +391,17 @@ export default class GallerySwiper extends PureComponent {
         }
     }
 
-    flingToPage ({ index, velocityX }) {
+    flingToPage({ index, velocityX }) {
         this._galleryViewPager &&
             this._galleryViewPager.flingToPage(index, velocityX);
     }
 
-    scrollToPage ({ index, immediate }) {
+    scrollToPage({ index, immediate }) {
         this._galleryViewPager &&
             this._galleryViewPager.scrollToPage(index, immediate);
     }
 
-    render () {
+    render() {
         let gestureResponder = this.gestureResponder;
 
         let images = this.props.images;
@@ -427,6 +434,7 @@ export default class GallerySwiper extends PureComponent {
                 pageDataArray={images}
                 {...gestureResponder}
                 sensitiveScroll={this.props.sensitiveScroll}
+                renderOverlay={this.props.renderOverlay}
                 onPageSelected={this.onPageSelected}
                 onPageScrollStateChanged={this.onPageScrollStateChanged}
                 onPageScroll={this.props.onPageScroll}
