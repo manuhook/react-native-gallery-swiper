@@ -71,7 +71,7 @@ declare module '@ericedouard/react-native-gallery-swiper' {
     removeClippedSubviews?: boolean,
     imageComponent?: (imageProps: ImageProps, imageDimensions: {width: number, height: number}, index: number) => JSX.Element,
     errorComponent?: () => JSX.Element,
-    flatListProps?: FlatListProps,
+    flatListProps?: FlatListProps<any>,
     refPage?: (galleryViewPager: PageList) => void
   };
 
