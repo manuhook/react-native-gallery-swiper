@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { PureComponent } from "react";
 import { Dimensions, View, ViewPropTypes } from "react-native";
 import { createResponder } from "react-native-easy-guesture-responder";
-import ImageTransformer from "react-native-image-transformer";
+import ImageTransformer from "@ericedouard/react-native-image-transformer";
 
 const DEFAULT_FLAT_LIST_PROPS = {
     windowSize: 3
