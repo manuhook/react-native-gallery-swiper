@@ -1,5 +1,5 @@
 {
-  "version": "1.28.9",
+  "version": "1.30.0",
   "name": "@manuhook/react-native-gallery-swiper",
   "description": "An easy and simple to use React Native component to render a high performant and easily customizable image gallery with common gestures like pan, pinch and double tap.  Supporting both iOS and Android. Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).",
   "keywords": [
@@ -54,8 +54,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@manuhook/react-native-image-transformer": "^1.5.4",
-    "@manuhook/react-native-page-list": "^1.2.0",
+    "@manuhook/react-native-image-transformer": "^1.5.5",
+    "@manuhook/react-native-page-list": "^1.2.1",
     "prop-types": "^15.6.2",
     "react-native-easy-guesture-responder": "^1.1.3"
   },
