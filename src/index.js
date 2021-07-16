@@ -235,10 +235,10 @@ export default class GallerySwiper extends PureComponent {
         const space = viewTransformer.getAvailableTranslateSpace();
         const dx = gestureState.moveX - gestureState.previousMoveX;
 
-        if (dx > 0 && space.left <= 0 && this.currentPage > 0) {
+        if (dx > 3 && space.left <= 0 && this.currentPage > 0) {
             return true;
         }
-        if (dx < 0 && space.right <= 0 && this.currentPage < this.pageCount - 1) {
+        if (dx < -3 && space.right <= 0 && this.currentPage < this.pageCount - 1) {
             return true;
         }
         return false;
