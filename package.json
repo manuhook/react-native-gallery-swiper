@@ -54,8 +54,8 @@
     "README.md"
   ],
   "dependencies": {
-    "react-native-image-transformer": "github:manuhook/react-native-image-transformer",
-    "react-native-page-list": "github:manuhook/react-native-page-list",
+    "react-native-image-transformer": "https://github.com/manuhook/react-native-easy-view-transformer/archive/refs/heads/master.tar.gz",
+    "react-native-page-list": "https://github.com/manuhook/react-native-page-list/archive/refs/heads/master.tar.gz",
     "prop-types": "^15.6.2",
     "react-native-easy-guesture-responder": "^1.1.3"
   },
