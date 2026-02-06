@@ -270,7 +270,7 @@ export default class GallerySwiper extends PureComponent {
         if (page >= 0 && page < this.pageCount) {
             let ref = this.imageRefs.get(page);
             if (ref) {
-                return ref.getViewTransformerInstance();
+                return ref;
             }
         }
     }
