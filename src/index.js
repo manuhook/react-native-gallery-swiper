@@ -1,9 +1,9 @@
 import PageList from "react-native-page-list";
 import PropTypes from "prop-types";
-import React, { PureComponent } from "react";
-import { Dimensions, View } from "react-native";
-import { createResponder } from "react-native-easy-guesture-responder";
-import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+import React, {PureComponent} from "react";
+import {Dimensions, View} from "react-native";
+import {createResponder} from "react-native-easy-guesture-responder";
+import {ViewPropTypes} from 'deprecated-react-native-prop-types';
 import ImageTransformer from "react-native-image-transformer";
 
 const DEFAULT_FLAT_LIST_PROPS = {
@@ -276,7 +276,11 @@ export default class GallerySwiper extends PureComponent {
     }
 
     getCurrentImageTransformer() {
-        return this.getImageTransformer(this.currentPage);
+        const transformer = this.getImageTransformer(this.currentPage);
+        if (transformer && transformer.getViewTransformerInstance) {
+            return transformer.getViewTransformerInstance();
+        }
+        return transformer;
     }
 
     getViewPagerInstance() {
