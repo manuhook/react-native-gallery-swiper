@@ -378,22 +378,32 @@ export default class GallerySwiper extends PureComponent {
             this.currentPage + 1
         );
         if (transformer) {
-            transformer.forceUpdateTransform({
-                scale: 1,
-                translateX: 0,
-                translateY: 0
-            });
+            const viewTransformerInstance = transformer.getViewTransformerInstance
+                ? transformer.getViewTransformerInstance()
+                : transformer;
+            
+            viewTransformerInstance.forceUpdateTransform &&
+                viewTransformerInstance.forceUpdateTransform({
+                    scale: 1,
+                    translateX: 0,
+                    translateY: 0
+                });
         }
 
         transformer = this.getImageTransformer(
             this.currentPage - 1
         );
         if (transformer) {
-            transformer.forceUpdateTransform({
-                scale: 1,
-                translateX: 0,
-                translateY: 0
-            });
+            const viewTransformerInstance = transformer.getViewTransformerInstance
+                ? transformer.getViewTransformerInstance()
+                : transformer;
+
+            viewTransformerInstance.forceUpdateTransform &&
+                viewTransformerInstance.forceUpdateTransform({
+                    scale: 1,
+                    translateX: 0,
+                    translateY: 0
+                });
         }
     }
 
